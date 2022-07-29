@@ -1,3 +1,5 @@
+mod tcp_server;
+
 use std::env;
 use std::env::args;
 use std::io::stderr;
@@ -18,7 +20,7 @@ fn main() {
     match protocol {
         "tcp" => match role {
             "server" => {
-                // TODO: TCPサーバーの呼び出し
+                tcp_server::serve(address).unwrap_or_else(|e| error!("{}", e));
             }
             "client" => {
                 // TODO: TCPクライアントの呼び出し
